@@ -28,5 +28,9 @@ public class Main {
         byte[][] tab = {{1,0,1,0,1}};
         Matrix mot = new Matrix(tab);
         mot.multiply(g).display();
+
+        TGraph monGraph = new TGraph(hbase1, 3, 4);
+        monGraph.display();
+
     }
 }
