@@ -24,12 +24,11 @@ public class Main {
         Matrix hbase1 = loadMatrix("data/matrix-15-20-3-4", 15, 20);
         Matrix hbase2 = loadMatrix("data/matrix-2000-6000-5-15", 2000, 6000);
         Matrix g = hbase1.GenG();
-
-        byte[][] tab = {{1,0,1,0}, {0,1,0,1}};
+        byte[][] tab = {{1,0,1,1,0,1,0,1,0,1,1,0,0,0,1,1,0,0,1,1}};
         Matrix mot = new Matrix(tab);
 
-        TGraph monGraph = new TGraph(mot, 1, 2);
-        monGraph.display();
+        TGraph monGraph = new TGraph(hbase1, 3, 4);
+        monGraph.decode(mot, 50).display();
 
     }
 }

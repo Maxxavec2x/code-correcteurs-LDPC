@@ -1,3 +1,5 @@
+import java.util.HashMap;
+
 public class TGraph {
     private int n_r, w_r, n_c, w_c;
     private int[][] left;
@@ -97,7 +99,55 @@ public class TGraph {
         System.out.println();
     }
 
+    public Matrix decode(Matrix code, int rounds) {
+        for (int i = 0; i < n_c; i++) { // On itère sur le nombre de lignes de right
+            right[i][0] = code.getElem(0,i); // On remplit la première colonne de right avec le mot encodé
+        }
+        for (int round = 0; round < rounds; round++) {
+            for (int i = 0; i < n_r; i++) {
+                left[i][0] = 0;
+                for (int k = 0; k < w_r; k++) {
+                    left[i][0] = (left[i][0] + right[left[i][k + 1]][0])% 2;
+                }
+            }
 
+            // Vérification
+            boolean are_n_val_zero = true;
+            for ( int i = 0; i < n_r; i ++) {
+                if (left[i][0] == 1 ) {
+                    are_n_val_zero = false;
+                }
+            }
+            if (are_n_val_zero ) {
+                byte[][] x = new byte[1][n_c];
+                for (int i = 0; i < n_c; i++) {
+                    x[0][i] = (byte) right[i][0];
+                }
+                return new Matrix(x);
+            }
+
+            // calcul du max:
+            int max = 0;
+            HashMap<Integer, Integer> count = new HashMap<Integer, Integer>();
+            for (int i = 0; i < n_c; i++) {
+                count.put(i, 0);
+                for (int k = 1; k < w_c + 1; k++) {
+                    count.put(i, count.get(i) + left[right[i][k]][0]);
+                }
+            if (count.get(i) > max) {
+                max = count.get(i);
+            }
+            }
+            // Renversement de bits :
+            for (int i = 0; i < n_c; i++) {
+                if (count.get(i) == max){
+                    right[i][0] = 1 - right[i][0];
+                }
+            }
+        }
+
+        return null;
+    }
 
 
 }
