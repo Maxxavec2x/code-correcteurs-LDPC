@@ -66,5 +66,39 @@ public class TGraph {
             System.out.println();
         }
         System.out.println();
+
+        // Affichage de right :
+
+
+        System.out.print("[");
+        for (int i = 0; i < n_c; i++) {
+            if (i != 0) {
+                System.out.print(" ");
+            }
+
+            System.out.print("[");
+
+            for (int j = 0; j < w_c+1; j++) {
+                System.out.printf("%d", right[i][j]);
+
+                if (j != w_c) {
+                    System.out.print(" ");
+                }
+            }
+
+            System.out.print("]");
+
+            if (i == n_c - 1) {
+                System.out.print("]");
+            }
+
+            System.out.println();
+        }
+        System.out.println();
     }
+
+
+
+
 }
+
