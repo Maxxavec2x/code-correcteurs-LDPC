@@ -27,8 +27,17 @@ public class Main {
         byte[][] tab = {{1,0,1,1,0,1,0,1,0,1,1,0,0,0,1,1,0,0,1,1}};
         Matrix mot = new Matrix(tab);
 
-        TGraph monGraph = new TGraph(hbase1, 3, 4);
+        TGraph monGraph = new TGraph(hbase2, 5, 15);
         monGraph.decode(mot, 50).display();
+        // Exercice 10
+        // Pour hbase 2 :
+        // n = 6000
+        // k = 4000
+        // redondance = 2000
+        // tau = k / n = 2/3
+        // erreur moyenne sur les codes reçu : 6000 * 0.02 = 120
+        // avec p = 2.5*10⁻2 = 150
+
 
     }
 }
